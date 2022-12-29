@@ -1,0 +1,17 @@
+void GameMenu(int switcher)
+{
+    system("cls");
+    if (switcher == 1)
+        cout << "\n\n\n\n\n                <<  НОВАЯ ИГРА!  >>\n\n                    ПРОДОЛЖИТЬ!";
+    else
+        cout << "\n\n\n\n\n                    НОВАЯ ИГРА!\n\n                <<  ПРОДОЛЖИТЬ!  >>";
+    int choice = _getch();
+    if (choice == 224)
+        choice = _getch();
+    if (choice == 72 || choice == 80)
+        GameMenu(3 - switcher);
+    if (choice == 27)
+        StartMenu(1);
+    if (choice == 13 || choice == 32)
+        Game(switcher);
+}
