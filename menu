@@ -1,0 +1,42 @@
+void StartMenu(int switcher)
+{
+    system("cls");
+    switch (switcher)
+    {
+    case 1:
+        cout << "\n\n\n                  <<  ИГРАТЬ!  >>\n\n                      ПОМОЩЬ!\n\n                     ЗАЛ СЛАВЫ\n\n                       ВЫХОД";
+        break;
+    case 2:
+        cout << "\n\n\n                      ИГРАТЬ!\n\n                  <<  ПОМОЩЬ!  >>\n\n                     ЗАЛ СЛАВЫ\n\n                       ВЫХОД";
+        break;
+    case 3:
+        cout << "\n\n\n                      ИГРАТЬ!\n\n                      ПОМОЩЬ!\n\n                  << ЗАЛ СЛАВЫ >>\n\n                       ВЫХОД";
+        break;
+    case 4:
+        cout << "\n\n\n                      ИГРАТЬ!\n\n                      ПОМОЩЬ!\n\n                     ЗАЛ СЛАВЫ\n\n                  <<   ВЫХОД   >>";
+        break;
+    }
+    int choice = _getch();
+    if (choice == 224)
+        choice = _getch();
+    if (choice == 72)
+        if (switcher != 1)
+            StartMenu(switcher - 1);
+        else
+            StartMenu(4);
+    if (choice == 80)
+        if (switcher != 4)
+            StartMenu(switcher + 1);
+        else
+            StartMenu(1);
+    if (choice == 13 || choice == 32)
+    {
+        if (switcher == 1)
+            GameMenu(1);
+        if (switcher == 2)
+            Help(0);
+        if (switcher == 3)
+            TopChart();
+        if (switcher == 4)
+            _exit(0);
+    }
