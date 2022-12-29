@@ -1,0 +1,52 @@
+if (_kbhit())//если клавиша была нажата
+        {
+            control = _getch();//переменная примет ее значение
+            if (control == 224)
+                control = _getch();
+        }
+        if (control == 72)//при движении корабля вверх
+            if (scr[2][0] == '\\' || scr[3][0] == '\\' && scr[2][0] == '¤' || scr[3][1] == '\\' && scr[2][1] == '¤')//если корабль врезался в верхнее поле - игра окончена
+                if (lifes > 1)
+                {
+                    cout << '\a';
+                    lifes--;
+                    weaponPos = 7;
+                    GameStart(scr, lifes, &timer);
+                    Sleep(1000);
+                }
+                else
+                    GameOver(odometer);
+            else
+            {
+                for (int i = 2; i < 13; i++)//корабль смещается на элемент выше
+                    for (int j = 0; j < 49; j++)
+                        if (scr[i][j] == '3' || scr[i][j] == '\\' || scr[i][j] == '=' || scr[i][j] == '/')
+                        {
+                            scr[i - 1][j] = scr[i][j];
+                            scr[i][j] = ' ';
+                        }
+                weaponPos--;
+            }
+        if (control == 80)//при движении корабля вниз
+            if (scr[12][0] == '/' || scr[11][0] == '/' && scr[12][0] == '¤' || scr[11][1] == '/' && scr[12][1] == '¤')//если корабль врезался в нижнее поле - игра окончена
+                if (lifes > 1)
+                {
+                    cout << '\a';
+                    lifes--;
+                    weaponPos = 7;
+                    GameStart(scr, lifes, &timer);
+                    Sleep(1000);
+                }
+                else
+                    GameOver(odometer);
+            else
+            {
+                for (int i = 12; i >= 2; i--)//корабль смещается на элемент вниз
+                    for (int j = 0; j < 49; j++)
+                        if (scr[i][j] == '3' || scr[i][j] == '\\' || scr[i][j] == '=' || scr[i][j] == '/')
+                        {
+                            scr[i + 1][j] = scr[i][j];
+                            scr[i][j] = ' ';
+                        }
+                weaponPos++;
+            }
