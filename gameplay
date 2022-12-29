@@ -1,0 +1,5 @@
+int odometerBuf = odometer, odometerDigitLength;
+        for (odometerDigitLength = 0; odometerBuf != 0; odometerBuf /= 10, odometerDigitLength++);//вычисление количества цифр на одометре
+        for (int i = odometerDigitLength, odometerBuf = odometer; i >= 0; i--, scr[0][i] = odometerBuf % 10 + '0', odometerBuf /= 10);//прорисовка одометра на приборную панель
+        scr[0][odometerDigitLength++] = 'К'; scr[0][odometerDigitLength++] = 'М';//дописывание "КМ"
+        odometer++;//наращение одометра
