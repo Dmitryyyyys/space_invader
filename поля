@@ -1,0 +1,11 @@
+char borderSymbols[] = { '†', '‡', '¤', ' ' };
+    for (int aboveBelow = 0; aboveBelow < 50; aboveBelow++)//прорисовка верхнего и нижнего полей (2 + 2)
+    {
+        scr[1][aboveBelow] = borderSymbols[rand() % 3];
+        if (scr[1][aboveBelow] == '‡')
+            scr[2][aboveBelow] = '¤';
+
+        scr[13][aboveBelow] = borderSymbols[rand() % 3];
+        if (scr[13][aboveBelow] == '‡')
+            scr[12][aboveBelow] = '¤';
+    }
