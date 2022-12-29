@@ -1,0 +1,43 @@
+for (int i = 1; i < 14; i++)//все "космические" элементы смещаются на элемент влево
+            for (int j = 0; j < 49; j++)
+            {
+                if (scr[i][j] == '\\' && scr[i][j + 1] == '¤' || scr[i][j] == '=' && scr[i][j + 1] == '¤' || scr[i][j] == '/' && scr[i][j + 1] == '¤')
+                    if (lifes > 1)
+                    {
+                        cout << '\a';
+                        lifes--;
+                        weaponPos = 7;
+                        GameStart(scr, lifes, &timer);
+                        Sleep(1000);
+                    }
+                    else
+                        GameOver(odometer);
+                if (scr[i][j] != '3' && scr[i][j] != '\\' && scr[i][j] != '=' && scr[i][j] != '/' && scr[i][j] != '-' && scr[i][j + 1] != '-')
+                    scr[i][j] = scr[i][j + 1];
+                if (scr[i][j] == '¤')
+                    scr[i][j + 1] = ' ';
+            }
+        for (int i = 1; i < 14; i++)//все снаряды смещаются на элемент вправо
+            for (int j = 48; j >= 0; j--)
+                if (scr[i][j] == '-')
+                    if (j != 48)
+                    {
+                        scr[i][j + 1] = '-';
+                        scr[i][j] = ' ';
+                    }
+                    else
+                        scr[i][j] = ' ';
+        char borderSymbols[] = { '†', '‡', '¤', ' ' };
+        scr[2][49] = ' ';//рандомное заполнение новых элементов краев
+        scr[1][49] = borderSymbols[rand() % 3];
+        if (scr[1][49] == '‡')
+            scr[2][49] = '¤';
+        scr[12][49] = ' ';
+        scr[13][49] = borderSymbols[rand() % 3];
+        if (scr[13][49] == '‡')
+            scr[12][49] = '¤';
+        for (int i = 3; i < 12; i++)//рандомное появление космического мусора
+        {
+            if (rand() % 10 == 1)
+                scr[i][49] = '¤';
+        }
