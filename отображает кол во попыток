@@ -1,0 +1,1 @@
+for (int i = 50; lifes > 0; i--, lifes--, scr[0][i] = '&');
